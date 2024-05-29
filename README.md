@@ -1,4 +1,5 @@
 Recipe Blog Website
+
 Welcome to the Recipe Blog Website, a web application designed for food enthusiasts to share, discover, and manage their favorite recipes. This application is built using Flask, a lightweight WSGI web application framework for Python.
 
 Table of Contents
