@@ -9,6 +9,7 @@ Usage
 Technologies Used
 
 Features
+
 User Authentication: Secure registration and login functionality.
 Password Encryption: Enhanced security for user passwords using bcrypt.
 Email Notifications: Send confirmation and password reset emails.
