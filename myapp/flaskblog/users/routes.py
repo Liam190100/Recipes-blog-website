@@ -9,7 +9,6 @@ from flaskblog.users.utils import save_picture, send_reset_email
 users = Blueprint('users', __name__)
 
 
-"""Handles user registration by displaying a registration form"""
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -25,7 +24,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-"""Handles user login by displaying a login form, validating the input, checking the user's credentials, and logging in the user if successful"""
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -42,14 +40,12 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
-"""Logs out the current user and redirects to the home page."""
 @users.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
 
-"""Displays and updates the user's account information"""
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -71,7 +67,6 @@ def account():
                            image_file=image_file, form=form)
 
 
-"""posts by a specific user, paginated and ordered by the date posted"""
 @users.route("/user/<string:username>")
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
@@ -82,7 +77,6 @@ def user_posts(username):
     return render_template('user_posts.html', posts=posts, user=user)
 
 
-"""password reset requests by displaying a form"""
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -96,7 +90,6 @@ def reset_request():
         return redirect(url_for('users.login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 
-"""resetting the password using a token"""
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
@@ -112,4 +105,4 @@ def reset_token(token):
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('reset_token.html', title='Reset Password', form=form) 
+    return render_template('reset_token.html', title='Reset Password', form=form)
